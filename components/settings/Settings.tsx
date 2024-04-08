@@ -201,7 +201,7 @@ const Settings: React.FC<SettingsProps> = ({token, setToken, wagerGoal, setWager
                 <Input type="text" value={wagerGoal} onChange={handleChangWagerGoal}></Input>
                 </div>
             </Label>
-            <Label>Start €:
+            <Label>Multi x:
             <div className='mt-3 mb-3 w-[70px] ml-3'>
                 <Input type="number" value={multi} onChange={handleChangeMulti}></Input>
                 </div>
