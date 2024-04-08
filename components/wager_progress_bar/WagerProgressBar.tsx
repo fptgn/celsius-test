@@ -52,7 +52,7 @@ const WagerProgessBar: React.FC<WagerProps> = ({ multi,token, id, goal, position
     params.append('auth_key', token,);
     params.append('user_id', id);
 
-    fetch("https://corsproxy.io/?https://celsiuscasino.com/api/get-user-promocodes", {
+    fetch("https://corsproxy.io/?https://celsiuscasino.com/api/get-user-monitors", {
       method: "POST",
       body: new URLSearchParams({
         'auth_key': token,
@@ -61,10 +61,18 @@ const WagerProgessBar: React.FC<WagerProps> = ({ multi,token, id, goal, position
     })
       .then((r) => r.json())
       .then((data) => {
-        if (!data.data[0].progress || !currency.BTC) {
+        if (!data.data[0].id || !currency.BTC) {
           return;
         }
-        setProgress(((data.data[0].progress / ((goal / currency[selectedCurrency] ) * multi) ) * 100));
+        const hasCurrency = data.data.find((element: any) => element.currency === currency[selectedCurrency])?.progress;
+          
+        if (hasCurrency) {
+          setProgress(((hasCurrency / ((goal / currency[selectedCurrency] ) * multi) ) * 100));
+    // Faire quelque chose si un élément avec currency égal à "TRX" est trouvé
+      } else {
+      return;
+    // Faire quelque chose si aucun élément avec currency égal à "TRX" n'est trouvé
+      }
       });
   };
 
