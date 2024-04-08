@@ -33,7 +33,7 @@ type CurrentGameProps = {
 
 type Slot = {
   name: string;
-  provider: string;
+  provider: any;
   thumbnailUrl: string;
   rtp: number;
   date: string;
@@ -201,7 +201,7 @@ const CurrentGame: React.FC<CurrentGameProps> = ({ id, token, positions, meteor,
           name: name,
           provider:
           merchantId != null
-              ? merchantname.name
+              ? merchantname?.name
               : "Celsius",
           thumbnailUrl: image,
           rtp: rtp,
